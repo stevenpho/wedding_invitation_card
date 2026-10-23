@@ -1,4 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name="robots" content="noindex"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="preload" as="image" href="images/env2_pocket.webp"><link rel="preload" as="image" href="images/env2_flap.webp"><link rel="preload" as="image" href="images/wax-seal-lm.webp">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
 <title>婚禮邀請函</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -57,6 +58,9 @@ img{display:block; max-width:100%; height:auto}
 .bgblur{position:absolute; inset:-12%; background:radial-gradient(90% 60% at 50% 50%,#bcd0e4,#a3bdd8 70%,#92afcf)}
 .rig{position:absolute; left:0; top:0; width:1438px; height:2576px; transform-origin:0 0; transform:translate(var(--tx,0px),var(--ty,0px)) scale(var(--s,.5))}
 .rig > div{position:absolute; inset:0}
+.rig{opacity:0; transition:opacity .6s ease}
+.intro.ready .rig{opacity:1}
+.intro:not(.ready) .hint,.intro:not(.ready) .tap{visibility:hidden}
 .rig .lin{background:#becbeb}
 .rig .lin::before{content:""; position:absolute; left:0; right:0; top:230px; height:1063px; background:linear-gradient(rgba(236,241,255,.32),rgba(236,241,255,.32)),url(images/liner.webp) 0 0/100% 100%; -webkit-mask-image:linear-gradient(transparent,#000 14%,#000 72%,transparent); mask-image:linear-gradient(transparent,#000 14%,#000 72%,transparent)}
 .rig .base{background:url(images/env2_pocket.webp) 0 0/100% 100%; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L945 1095L715 1370L477 1108L0 509Z")}
@@ -359,6 +363,13 @@ textarea.field{min-height:92px; resize:vertical}
     rig.style.setProperty('--ty', (h * 0.5 - 1288 * sc) + 'px');
   }
   fit(); window.addEventListener('resize', fit);
+  /* reveal the envelope only after its images have loaded (or after 4s), otherwise the CSS-only card shows first */
+  (function () {
+    var need = ['images/env2_pocket.webp', 'images/env2_flap.webp', 'images/wax-seal-lm.webp', 'images/liner.webp'], left = need.length, shown = false;
+    function show() { if (shown) return; shown = true; intro.classList.add('ready'); }
+    need.forEach(function (src) { var im = new Image(); im.onload = im.onerror = function () { if (--left === 0) show(); }; im.src = src; });
+    setTimeout(show, 4000);
+  })();
 
   /* sparkles */
   var sd = 7; function rnd() { sd = (sd * 16807) % 2147483647; return sd / 2147483647; }
@@ -376,7 +387,7 @@ textarea.field{min-height:92px; resize:vertical}
   var opened = false;
   function later(ms, fn) { setTimeout(fn, ms * K); }
   function open() {
-    if (opened) return; opened = true;
+    if (opened || !intro.classList.contains('ready')) return; opened = true;
     intro.classList.add('opened');
     statusEl.textContent = '封蠟已拆開';
     later(5000, function () {
