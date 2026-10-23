@@ -40,7 +40,7 @@ img{display:block; max-width:100%; height:auto}
   background:#b3c7dd; outline:none; transition:background-color .9s ease .2s}
 .intro.opened{background:transparent; opacity:0; transition:background-color .9s ease .2s,opacity .9s ease 5.1s}
 .rig .sh2{filter:blur(40px); opacity:.8}
-.rig .sh2 i{position:absolute; inset:0; background:#34476f; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L678 1360L0 509Z")}
+.rig .sh2 i{position:absolute; inset:0; background:#34476f; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L945 1095L715 1370L477 1108L0 509Z")}
 .rig .base,.rig .lin,.rig .sh2{transform-origin:719px 1288px}
 .rig .ltr{inset:auto; left:189px; top:240px; width:1060px; height:1650px; transform-origin:530px 760px; translate:0 130px; box-sizing:border-box;
   background:radial-gradient(120% 70% at 50% 0%,#fffdf9,#f8f3ea 70%,#f1eadf),#f8f3ea;
@@ -60,15 +60,15 @@ img{display:block; max-width:100%; height:auto}
 .rig > div{position:absolute; inset:0}
 .rig .lin{background:#becbeb}
 .rig .lin::before{content:""; position:absolute; left:0; right:0; top:230px; height:1063px; background:linear-gradient(rgba(236,241,255,.32),rgba(236,241,255,.32)),url(images/liner.webp) 0 0/100% 100%; -webkit-mask-image:linear-gradient(transparent,#000 14%,#000 72%,transparent); mask-image:linear-gradient(transparent,#000 14%,#000 72%,transparent)}
-.rig .base{background:url(images/env2_pocket.webp) 0 0/100% 100%; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L678 1360L0 509Z")}
+.rig .base{background:url(images/env2_pocket.webp) 0 0/100% 100%; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L945 1095L715 1370L477 1108L0 509Z")}
 .rig .shade{opacity:0; transition:opacity 1.6s ease .2s; background:radial-gradient(60% 50% at 50% 55%,rgba(40,60,110,.22),transparent 70%); -webkit-mask-image:none; mask-image:none}
 .opened .rig .shade{opacity:0}
-.rig .fl{background:url(images/env2_flap.webp) 0 0/100% 100%; clip-path:path("M0 0H1438V606L678 1360L0 509Z"); transform-origin:719px 0; transform:perspective(7000px) rotateX(0deg); backface-visibility:hidden;
+.rig .fl{background:url(images/env2_flap.webp) 0 0/100% 100%; clip-path:path("M0 0H1438V606L945 1095L715 1370L477 1108L0 509Z"); transform-origin:719px 0; transform:perspective(7000px) rotateX(0deg); backface-visibility:hidden;
   transition:transform 2.4s cubic-bezier(.4,0,.2,1),opacity .3s ease 2.3s; filter:drop-shadow(0 8px 10px rgba(30,50,90,.32)) drop-shadow(0 40px 40px rgba(30,50,90,.28))}
 .opened .rig .fl{transform:perspective(7000px) rotateX(96deg); opacity:0}
 .rig .sl{transform-origin:719px 0; transform:perspective(7000px) rotateX(0deg); backface-visibility:hidden; filter:drop-shadow(0 6px 9px rgba(30,50,90,.34)); pointer-events:none;
   transition:transform 2.4s cubic-bezier(.4,0,.2,1),opacity .3s ease 2.3s,filter 2.4s cubic-bezier(.4,0,.2,1)}
-.rig .sl i{position:absolute; left:461px; top:1023px; width:530px; height:550px; background:url(images/wax-seal-lm.webp) 0 0/100% 100%; transform-origin:50% 50%; animation:seal-breathe 3.2s ease-in-out infinite}
+.rig .sl i{position:absolute; left:454px; top:1023px; width:530px; height:550px; background:url(images/wax-seal-lm.webp) 0 0/100% 100%; transform-origin:50% 50%; animation:seal-breathe 3.2s ease-in-out infinite}
 .opened .rig .sl{transform:perspective(7000px) rotateX(96deg); opacity:0; filter:drop-shadow(0 60px 50px rgba(30,50,90,.42))}
 .opened .rig .sl i{animation-play-state:paused}
 @keyframes seal-breathe{0%,100%{scale:1}50%{scale:1.028}}
@@ -213,7 +213,7 @@ textarea.field{min-height:92px; resize:vertical}
 
   <section class="intro" id="intro" role="button" tabindex="0" aria-label="輕觸封蠟，開啟邀請函">
     <div class="pic"><div class="bgblur"></div>
-      <div class="rig" id="rig"><div class="lin"></div><div class="ltr" aria-hidden="true"><b style="top:270px;font-size:46px;letter-spacing:.34em;color:#8a7a68">THE WEDDING OF</b><b style="top:360px;font-size:230px;font-style:italic;font-weight:400;color:#4f6f96;line-height:1">L&amp;M</b><b style="top:640px;font-size:60px;letter-spacing:.3em;font-family:var(--serif);color:#6a5a4a">誠摯邀請</b><b style="top:760px;font-size:50px;letter-spacing:.24em;color:#8a7a68">12 · 12 · 2026</b></div><div class="sh2"><i></i></div><div class="base"></div><svg class="ve" viewBox="0 0 1438 2576" aria-hidden="true"><path d="M0 511L678 1362L1438 608" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="3.5" stroke-linejoin="miter"/></svg><div class="shade"></div><div class="fl"></div><div class="sl"><i></i></div></div>
+      <div class="rig" id="rig"><div class="lin"></div><div class="ltr" aria-hidden="true"><b style="top:270px;font-size:46px;letter-spacing:.34em;color:#8a7a68">THE WEDDING OF</b><b style="top:360px;font-size:230px;font-style:italic;font-weight:400;color:#4f6f96;line-height:1">L&amp;M</b><b style="top:640px;font-size:60px;letter-spacing:.3em;font-family:var(--serif);color:#6a5a4a">誠摯邀請</b><b style="top:760px;font-size:50px;letter-spacing:.24em;color:#8a7a68">12 · 12 · 2026</b></div><div class="sh2"><i></i></div><div class="base"></div><svg class="ve" viewBox="0 0 1438 2576" aria-hidden="true"><path d="M0 511L477 1110L715 1372L945 1097L1438 608" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="3.5" stroke-linejoin="miter"/></svg><div class="shade"></div><div class="fl"></div><div class="sl"><i></i></div></div>
     </div>
     <div class="hint" aria-hidden="true"><i></i></div>
     <p class="tap" data-k="tap">輕觸封蠟　開啟邀請函</p>
