@@ -47,11 +47,11 @@ img{display:block; max-width:100%; height:auto}
 .rig > div{position:absolute; inset:0}
 .opened .rig .lin{opacity:0; transition:opacity .7s ease}
 .rig .lin{background:linear-gradient(165deg,#b4c9df,#a9c2dc 55%,#9ab5d2)}
-.rig .base{transition:transform 1.7s cubic-bezier(.5,0,.2,1) .15s,opacity 1.2s ease .55s; background:url(env2.jpg) 0 0/100% 100%; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L945 1095L1000 1300L950 1500L715 1600L480 1500L430 1300L477 1108L0 509Z")}
+.rig .base{transition:transform 1.7s cubic-bezier(.5,0,.2,1) .15s,opacity 1.2s ease .55s; background:url(images/env2.jpg) 0 0/100% 100%; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L945 1095L1000 1300L950 1500L715 1600L480 1500L430 1300L477 1108L0 509Z")}
 .rig .shade{opacity:0; transition:opacity 1.6s ease .2s; background:radial-gradient(60% 50% at 50% 55%,rgba(40,60,110,.22),transparent 70%); -webkit-mask-image:none; mask-image:none}
 .opened .rig .shade{opacity:0}
 .opened .rig .base{transform:translateY(1300px); opacity:0}
-.rig .fl{background:url(env2.jpg) 0 0/100% 100%; clip-path:path("M0 0H1438V606L945 1095L1000 1300L950 1500L715 1600L480 1500L430 1300L477 1108L0 509Z"); transform-origin:719px 0; transform:rotateX(0deg); backface-visibility:hidden;
+.rig .fl{background:url(images/env2.jpg) 0 0/100% 100%; clip-path:path("M0 0H1438V606L945 1095L1000 1300L950 1500L715 1600L480 1500L430 1300L477 1108L0 509Z"); transform-origin:719px 0; transform:rotateX(0deg); backface-visibility:hidden;
   transition:transform 1.5s cubic-bezier(.5,0,.2,1),opacity 1.1s ease .3s; filter:drop-shadow(0 40px 40px rgba(30,50,90,.35))}
 .opened .rig .fl{transform:translateY(-1100px) scale(1.1); opacity:0}
 
@@ -201,8 +201,8 @@ textarea.field{min-height:92px; resize:vertical}
   <canvas id="petals" aria-hidden="true"></canvas>
   <main id="page">
     <header class="hero">
-      <img class="bg" src="hero2.jpg" alt="" width="1438" height="2576">
-      <div class="archw"><img src="arch.webp" alt="" width="1300" height="1268"></div>
+      <img class="bg" src="images/hero2.jpg" alt="" width="1438" height="2576">
+      <div class="archw"><img src="images/arch.webp" alt="" width="1300" height="1268"></div>
       <div class="in">
         <p class="eyebrow" data-k="eyebrow">誠摯邀請　婚禮</p>
         <h1 class="names">Lucia<i>&amp;</i>Matteo</h1>
@@ -213,7 +213,7 @@ textarea.field{min-height:92px; resize:vertical}
 
     <section class="sec" id="join">
       <div class="w">
-        <img class="art castle" src="castle.webp" alt="水彩繪製的城堡" width="900" height="853">
+        <img class="art castle" src="images/castle.webp" alt="水彩繪製的城堡" width="900" height="853">
         <h2 class="i" data-k="joinT">誠摯邀請您<br>一同見證我們的婚禮</h2>
         <p class="sub" data-k="joinP">我們滿心歡喜，期待與您共度這特別的一天。</p>
         <p class="kicker" data-k="tlT">時間與地點</p>
@@ -224,7 +224,7 @@ textarea.field{min-height:92px; resize:vertical}
     </section>
 
     <section class="sec cd-sec" id="count">
-      <img class="arch" src="arch.webp" alt="" width="1300" height="1268" loading="lazy">
+      <img class="arch" src="images/arch.webp" alt="" width="1300" height="1268" loading="lazy">
       <div class="w">
         <h2 data-k="cdT">倒數計時</h2>
         <p class="sub" data-k="cdS">距離二〇二六年十二月十二日</p>
@@ -239,7 +239,7 @@ textarea.field{min-height:92px; resize:vertical}
 
     <section class="sec" id="dress">
       <div class="w">
-        <img class="art fan" src="fan.webp" alt="" width="700" height="584" loading="lazy">
+        <img class="art fan" src="images/fan.webp" alt="" width="700" height="584" loading="lazy">
         <h2 data-k="drT">服裝規範</h2>
         <p class="small" data-k="drS">正式晚禮服</p>
         <p class="sub" data-k="drP">晚宴將在燭光與莊園庭園中展開，敬請男士著燕尾服或深色正式西服，女士著及地長禮服或優雅的雞尾酒裝。柔和色系最為相襯：香檳、淡粉、鼠尾草綠與暮藍。象牙白與純白，請留給新娘。</p>
@@ -248,7 +248,7 @@ textarea.field{min-height:92px; resize:vertical}
 
     <section class="sec alt" id="program">
       <div class="w">
-        <img class="art cake" src="cake.webp" alt="" width="640" height="969" loading="lazy">
+        <img class="art cake" src="images/cake.webp" alt="" width="640" height="969" loading="lazy">
         <h2 data-k="pgT">當日流程</h2>
         <p class="sub" data-k="pgS">以下時間為範例，請替換成實際安排。</p>
         <ol class="flow">
@@ -275,7 +275,7 @@ textarea.field{min-height:92px; resize:vertical}
 
     <section class="sec alt" id="discover">
       <div class="w">
-        <img class="art fountain" src="fountain.webp" alt="" width="900" height="795" loading="lazy">
+        <img class="art fountain" src="images/fountain.webp" alt="" width="900" height="795" loading="lazy">
         <h2 class="i" data-k="dcT">探索周邊</h2>
         <p class="small" data-k="dcS">抵達前後，不妨順道走走</p>
         <p class="kicker" style="font-size:15px;letter-spacing:.3em;text-transform:uppercase;font-style:normal" data-k="dcR">餐廳與咖啡</p>
@@ -289,7 +289,7 @@ textarea.field{min-height:92px; resize:vertical}
     </section>
 
     <section class="sec" id="gifts" style="padding-top:268px">
-      <img class="tassels" src="tassel.webp" alt="" width="620" height="893" loading="lazy" style="margin:0">
+      <img class="tassels" src="images/tassel.webp" alt="" width="620" height="893" loading="lazy" style="margin:0">
       <div class="w">
         <h2 data-k="gfT">賀禮</h2>
         <div class="card gcard"><p class="sub" style="margin:0;text-align:center;font-style:normal" data-k="gfP">您的蒞臨就是最好的祝福。若您仍想致贈賀禮，請參考以下資訊。</p></div>
@@ -320,7 +320,7 @@ textarea.field{min-height:92px; resize:vertical}
       </div>
     </section>
 
-    <footer class="foot"><img class="sealmini" src="seal.webp" alt="" width="1300" height="875" loading="lazy"><div class="mono">Lucia &amp; Matteo</div><p>12 · 12 · 2026</p></footer>
+    <footer class="foot"><img class="sealmini" src="images/seal.webp" alt="" width="1300" height="875" loading="lazy"><div class="mono">Lucia &amp; Matteo</div><p>12 · 12 · 2026</p></footer>
   </main>
 </div>
 

@@ -1,14 +1,5 @@
-# 未使用的原始素材(頁面實際使用的是 .webp 與 env2.jpg、hero2.jpg)
-envelope.jpg
-hero.jpg
-cake.jpg
-castle.jpg
-fan.jpg
-fountain.jpg
-tassel.jpg
-
-# 修改前的備份檔
-index.pre-*.html
+# 原始素材與備份(不公開;頁面使用的圖片放在 images/)
+source/
 
 # AI 助手用的內部說明
 AGENTS.md
