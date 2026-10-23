@@ -1,0 +1,20 @@
+# 未使用的原始素材(頁面實際使用的是 .webp 與 env2.jpg、hero2.jpg)
+envelope.jpg
+hero.jpg
+cake.jpg
+castle.jpg
+fan.jpg
+fountain.jpg
+tassel.jpg
+
+# 修改前的備份檔
+index.pre-*.html
+
+# AI 助手用的內部說明
+AGENTS.md
+skills/
+
+# 系統與機密檔
+.DS_Store
+.env
+*.pem
