@@ -77,7 +77,8 @@ img{display:block; max-width:100%; height:auto}
 @keyframes ripple{0%{transform:scale(.96); opacity:.9}100%{transform:scale(1.7); opacity:0}}
 @keyframes breathe{0%,100%{opacity:.25; transform:scale(.96)}50%{opacity:.9; transform:scale(1.06)}}
 .opened .hint{opacity:0; animation:none}
-@media (prefers-reduced-motion:reduce){.rig .sl i{animation:none}.opened .rig .ve{scale:1; translate:none; transition:none}.opened .rig .base,.opened .rig .sh2,.opened .rig .lin,.opened .rig .ltr{scale:1; translate:none; transition:none}.intro.opened{transition:opacity .6s ease}}
+/* reduce motion: keep the envelope opening (flap, rising card, fade) but drop the zoom-through, parallax and the breathing seal */
+@media (prefers-reduced-motion:reduce){.rig .sl i{animation:none}.opened .rig .base,.opened .rig .sh2,.opened .rig .lin{scale:1; translate:none; transition:none}.opened .rig .ve{opacity:1; scale:1; translate:none; transition:opacity .7s ease .5s}.opened .rig .ltr{scale:1; translate:0 0; transition:translate 1.8s cubic-bezier(.2,.7,.2,1) 1s}.intro.opened{transition:background-color .9s ease .2s,opacity 1s ease 2.9s}}
 @media (prefers-reduced-motion:reduce){.hint::before,.hint::after,.hint i{animation:none}}
 #petals{position:fixed; inset:0; width:100%; height:100%; z-index:40; pointer-events:none; opacity:0; transition:opacity 2s ease}
 #petals.on{opacity:1}
@@ -292,7 +293,7 @@ body:not(.revealed) .hero .in > *{opacity:0}
 <script>
 (function () {
   var body = document.body, intro = document.getElementById('intro');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, K = reduce ? 0.01 : 1;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, K = 1;
   var statusEl = document.getElementById('status');
   body.classList.add('locked');
 
@@ -333,11 +334,11 @@ body:not(.revealed) .hero .in > *{opacity:0}
     if (opened || !intro.classList.contains('ready')) return; opened = true;
     intro.classList.add('opened');
     statusEl.textContent = '封蠟已拆開';
-    later(5000, function () {
+    later(reduce ? 3400 : 5000, function () {
       window.scrollTo(0, 0);
       body.classList.remove('locked'); body.classList.add('revealed'); intro.style.pointerEvents = 'none'; startPetals();
     });
-    later(6200, function () { intro.style.display = 'none'; });
+    later(reduce ? 4400 : 6200, function () { intro.style.display = 'none'; });
   }
   intro.addEventListener('click', open);
   intro.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
