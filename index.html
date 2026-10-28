@@ -407,17 +407,17 @@ body:not(.revealed) .hero .in > *{opacity:0}
   /* falling petals */
   var petalsOn=false;
   function startPetals(){
-    if(petalsOn || matchMedia('(prefers-reduced-motion:reduce)').matches) return; petalsOn=true;
+    if(petalsOn) return; petalsOn=true;
     var cv=document.getElementById('petals'), cx=cv.getContext('2d'), W=0,H=0, dpr=Math.min(devicePixelRatio||1,2);
     function size(){ W=innerWidth; H=innerHeight; cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0); }
     size(); addEventListener('resize',size);
     var pink=[['#fff4f6','#f7c9d6'],['#fde0e6','#ee9db5']], lilac=[['#f8f3fd','#dccdf0'],['#efe6f9','#c9b3e6']], pn=0;
-    var N=W<500?22:34, ps=[];
+    var calm=matchMedia('(prefers-reduced-motion:reduce)').matches, N=calm?7:(W<500?22:34), ps=[];
     function mk(init){
       var set=(pn++%2===0)?pink:lilac, c=set[Math.floor(Math.random()*set.length)];
       return {x:Math.random()*W, y:init?Math.random()*H:-30-Math.random()*H*.4, r:7+Math.random()*8,
-        vy:28+Math.random()*34, sw:20+Math.random()*34, sp:.5+Math.random()*.9, ph:Math.random()*6.28,
-        rot:Math.random()*6.28, vr:(Math.random()-.5)*1.6, fl:Math.random()*6.28, vf:1+Math.random()*1.6, c:c, a:.7+Math.random()*.3};
+        vy:(28+Math.random()*34)*(calm?.45:1), sw:(20+Math.random()*34)*(calm?.4:1), sp:(.5+Math.random()*.9)*(calm?.5:1), ph:Math.random()*6.28,
+        rot:Math.random()*6.28, vr:(Math.random()-.5)*(calm?.3:1.6), fl:Math.random()*6.28, vf:1+Math.random()*1.6, c:c, a:.7+Math.random()*.3};
     }
     for(var i=0;i<N;i++) ps.push(mk(true));
     function petal(p){
@@ -434,7 +434,7 @@ body:not(.revealed) .hero .in > *{opacity:0}
         var p=ps[i]; p.y+=p.vy*dt; p.ph+=p.sp*dt; p.rot+=p.vr*dt; p.fl+=p.vf*dt;
         var x=p.x+Math.sin(p.ph)*p.sw;
         if(p.y>H+30){ ps[i]=mk(false); continue; }
-        cx.save(); cx.translate(x,p.y); cx.rotate(p.rot); cx.scale(Math.max(.25,Math.abs(Math.cos(p.fl))),1);
+        cx.save(); cx.translate(x,p.y); cx.rotate(p.rot); if(!calm) cx.scale(Math.max(.25,Math.abs(Math.cos(p.fl))),1);
         cx.globalAlpha=p.a; cx.shadowColor='rgba(120,70,90,.18)'; cx.shadowBlur=3; petal(p); cx.restore();
       }
       requestAnimationFrame(tick);
