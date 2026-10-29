@@ -1,6 +1,7 @@
 <!doctype html><html><head><meta charset=utf8><meta name="robots" content="noindex"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<link rel="preload" as="image" href="images/env2_pocket.webp"><link rel="preload" as="image" href="images/env2_flap.webp"><link rel="preload" as="image" href="images/wax-seal-yy.webp">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="images/env2_pocket.webp" fetchpriority="high"><link rel="preload" as="image" href="images/env2_flap.webp" fetchpriority="high"><link rel="preload" as="image" href="images/wax-seal-yy.webp" fetchpriority="high"><link rel="preload" as="image" href="images/liner.webp" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <title>婚禮邀請函</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -220,7 +221,7 @@ body:not(.revealed) .hero .in > *{opacity:0}
   <canvas id="petals" aria-hidden="true"></canvas>
   <main id="page">
     <header class="hero">
-      <img class="bg" src="images/hero-chapel.webp" alt="" width="1086" height="1448">
+      <img class="bg" src="images/hero-chapel.webp" alt="" width="1086" height="1448" fetchpriority="low" decoding="async">
       <div class="in">
         <p class="eyebrow" data-k="eyebrow">誠摯邀請　婚禮</p>
         <h1 class="names">易晏<i>&amp;</i>巧宴</h1>
@@ -310,7 +311,8 @@ body:not(.revealed) .hero .in > *{opacity:0}
   /* reveal the envelope only after its images have loaded (or after 4s), otherwise the CSS-only card shows first */
   (function () {
     var need = ['images/env2_pocket.webp', 'images/env2_flap.webp', 'images/wax-seal-yy.webp', 'images/liner.webp'], left = need.length, shown = false;
-    function show() { if (shown) return; shown = true; intro.classList.add('ready'); }
+    function warm() { ['images/arch.webp', 'images/church.webp', 'images/cake.webp', 'images/seal-yy.webp'].forEach(function (src) { new Image().src = src; }); }
+    function show() { if (shown) return; shown = true; intro.classList.add('ready'); setTimeout(warm, 1500); }
     need.forEach(function (src) { var im = new Image(); im.onload = im.onerror = function () { if (--left === 0) show(); }; im.src = src; });
     setTimeout(show, 4000);
   })();
