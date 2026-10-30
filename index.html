@@ -56,6 +56,11 @@ img{display:block; max-width:100%; height:auto}
 .rig{opacity:0; transition:opacity .6s ease}
 .intro.ready .rig{opacity:1}
 .intro:not(.ready) .hint,.intro:not(.ready) .tap{visibility:hidden}
+.ld{position:absolute; left:0; right:0; bottom:calc(env(safe-area-inset-bottom,0px) + 6svh); z-index:4; margin:0; text-align:center; pointer-events:none; transition:opacity .5s ease,visibility .5s}
+.ld span{display:block; font:600 13px/1 var(--disp); letter-spacing:.3em; text-indent:.3em; color:#46698f}
+.ld i{display:block; width:min(56%,220px); height:3px; margin:14px auto 0; border-radius:2px; background:rgba(70,105,143,.22); overflow:hidden}
+.ld b{display:block; height:100%; width:0; border-radius:2px; background:#46698f}
+.intro.ready .ld{opacity:0; visibility:hidden}
 .rig .lin{background:#becbeb}
 .rig .lin::before{content:""; position:absolute; left:0; right:0; top:230px; height:1063px; background:linear-gradient(rgba(236,241,255,.32),rgba(236,241,255,.32)),url(images/liner.webp) 0 0/100% 100%; -webkit-mask-image:linear-gradient(transparent,#000 14%,#000 72%,transparent); mask-image:linear-gradient(transparent,#000 14%,#000 72%,transparent)}
 .rig .base{background:url(images/env2_pocket.webp) 0 0/100% 100%; clip-path:path(evenodd,"M0 0H1438V2576H0Z M0 0H1438V606L945 1095L715 1370L477 1108L0 509Z")}
@@ -215,6 +220,7 @@ body:not(.revealed) .hero .in > *{opacity:0}
       <div class="rig" id="rig"><div class="lin"></div><div class="ltr" aria-hidden="true"><b style="top:270px;font-size:46px;letter-spacing:.34em;color:#8a7a68">THE WEDDING OF</b><b style="top:360px;font-size:230px;font-style:italic;font-weight:400;color:#4f6f96;line-height:1">Y&amp;Y</b><b style="top:640px;font-size:60px;letter-spacing:.3em;font-family:var(--serif);color:#6a5a4a">誠摯邀請</b><b style="top:760px;font-size:50px;letter-spacing:.24em;color:#8a7a68">2027.05.22</b></div><div class="sh2"></div><div class="base"></div><svg class="ve" viewBox="0 0 1438 2576" aria-hidden="true"><path d="M0 514L477 1113L715 1375L945 1100L1438 611" fill="none" stroke="#3c5588" stroke-opacity=".28" stroke-width="4"/><path d="M0 511L477 1110L715 1372L945 1097L1438 608" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="3.5" stroke-linejoin="miter"/></svg><div class="fl"></div><div class="sl"><i></i></div></div>
     </div>
     <div class="hint" aria-hidden="true"><i></i></div>
+    <div class="ld" id="ld" aria-hidden="true"><span id="ldt">載入中 0%</span><i><b id="ldb"></b></i></div>
     <p class="tap" data-k="tap">輕觸封蠟　開啟邀請函</p>
   </section>
 
@@ -310,11 +316,21 @@ body:not(.revealed) .hero .in > *{opacity:0}
   fit(); window.addEventListener('resize', fit);
   /* reveal the envelope only after its images have loaded (or after 4s), otherwise the CSS-only card shows first */
   (function () {
-    var need = ['images/env2_pocket.webp', 'images/env2_flap.webp', 'images/wax-seal-yy.webp', 'images/liner.webp'], left = need.length, shown = false;
+    var need = ['images/env2_pocket.webp', 'images/env2_flap.webp', 'images/wax-seal-yy.webp', 'images/liner.webp'],
+        size = { 'images/env2_pocket.webp': 385, 'images/env2_flap.webp': 385, 'images/wax-seal-yy.webp': 91, 'images/liner.webp': 15 },
+        total = 876, got = 0, left = need.length, shown = false, shownPct = 0,
+        ldt = document.getElementById('ldt'), ldb = document.getElementById('ldb');
+    function paint(p) { ldt.textContent = '載入中 ' + p + '%'; ldb.style.width = p + '%'; }
+    function show() { if (shown) return; shown = true; paint(100); setTimeout(function () { intro.classList.add('ready'); }, 250); setTimeout(warm, 1500); }
     function warm() { ['images/arch.webp', 'images/church.webp', 'images/cake.webp', 'images/seal-yy.webp'].forEach(function (src) { new Image().src = src; }); }
-    function show() { if (shown) return; shown = true; intro.classList.add('ready'); setTimeout(warm, 1500); }
-    need.forEach(function (src) { var im = new Image(); im.onload = im.onerror = function () { if (--left === 0) show(); }; im.src = src; });
-    setTimeout(show, 4000);
+    (function ease() {
+      if (shown) return;
+      var target = Math.round(got / total * 100);
+      if (shownPct < target) { shownPct = Math.min(target, shownPct + Math.max(1, Math.round((target - shownPct) * .2))); paint(shownPct); }
+      requestAnimationFrame(ease);
+    })();
+    need.forEach(function (src) { var im = new Image(); im.onload = im.onerror = function () { got += size[src]; if (--left === 0) show(); }; im.src = src; });
+    setTimeout(function () { if (!shown) { shown = true; paint(100); intro.classList.add('ready'); setTimeout(warm, 1500); } }, 4000);
   })();
 
   /* sparkles */
